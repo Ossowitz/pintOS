@@ -58,3 +58,54 @@ sudo chmod 644 /usr/bin/Pintos.pm /usr/bin/gdb-macros
 ```
 
 **На этом установка и настройка окружения для работы с ОС Pintos завершена.**
+
+**Для проверки корректности настройки среды необходимо скомпилировать ядро ОС Pintos и
+запустить его на эмуляторе.**
+
+```shell
+# Для компиляции необходимо выполнить команду make в каталоге threads:
+cd pintos/src/threads
+make
+```
+
+Успешная компиляция подтверждается отсутствием на экране сообщений об ошибках. Для
+запуска pintos на эмуляторе qemu необходимо выполнить, например, команду:
+
+```text
+pintos --qemu -- -q run alarm-single
+```
+
+```text
+Данная команда, выполненная в каталоге threads, запустит скомпилированный образ, запустит 
+тест "alarm-single" и выключит эмулятор по его завершении. Результат выполнения может выглядеть, 
+например, следующим образом:
+```
+
+```text
+Loading...........
+Kernel command line: -q run alarm-single
+Pintos booting with 3,968 kB RAM...
+367 pages available in kernel pool.
+367 pages available in user pool.
+Calibrating timer... 419,020,800 loops/s.
+Boot complete.
+Executing 'alarm-single':
+(alarm-single) begin
+(alarm-single) Creating 5 threads to sleep 1 times each.
+(alarm-single) Thread 0 sleeps 10 ticks each time,
+(alarm-single) thread 1 sleeps 20 ticks each time, and so on.
+(alarm-single) If successful, product of iteration count and
+(alarm-single) sleep duration will appear in nondescending order.
+(alarm-single) thread 0: duration=10, iteration=1, product=10
+(alarm-single) thread 1: duration=20, iteration=1, product=20
+(alarm-single) thread 2: duration=30, iteration=1, product=30
+(alarm-single) thread 3: duration=40, iteration=1, product=40
+(alarm-single) thread 4: duration=50, iteration=1, product=50
+(alarm-single) end
+Execution of 'alarm-single' complete.
+Timer: 293 ticks
+Thread: 0 idle ticks, 293 kernel ticks, 0 user ticks
+Console: 986 characters output
+Keyboard: 0 keys pressed
+Powering off...
+```
