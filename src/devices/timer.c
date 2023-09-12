@@ -30,11 +30,18 @@ static void busy_wait (int64_t loops);
 static void real_time_sleep (int64_t num, int32_t denom);
 static void real_time_delay (int64_t num, int32_t denom);
 
-/* Sets up the timer to interrupt TIMER_FREQ times per second,
-   and registers the corresponding interrupt. */
-void
-timer_init (void) 
-{
+/**
+ *      Sets up the timer to interrupt TIMER_FREQ times per second,
+   and registers the corresponding interrupt.
+
+ *      pit_configure_channel(0, 2, TIMER_FREQ) - функция, которая настраивает канал таймера PIT
+ * (Programmable Interval Timer) на использование режима 2 и устанавливает частоту таймера на значение TIMER_FREQ.
+ * Режим 2 используется для установки таймера в периодический режим с использованием автоматической перезагрузки
+ *      intr_register_ext (0x20, timer_interrupt, "8254 Timer") - функция, которая регистрирует прерывание таймера с вектором
+ * прерывания 0x20 (32 в десятичной). Когда таймер достигает заданного значения, происходит прерывания, и исполняется
+ * обработчик прерывания timer_interrupt. Строка "8254 Timer" используется в качестве имени прерывания для отладочных целей
+ */
+void timer_init (void) {
   pit_configure_channel (0, 2, TIMER_FREQ);
   intr_register_ext (0x20, timer_interrupt, "8254 Timer");
 }
