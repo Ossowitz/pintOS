@@ -30,10 +30,11 @@ static void busy_wait (int64_t loops);
 static void real_time_sleep (int64_t num, int32_t denom);
 static void real_time_delay (int64_t num, int32_t denom);
 
-/**
- *      Sets up the timer to interrupt TIMER_FREQ times per second,
-   and registers the corresponding interrupt.
+/* Sets up the timer to interrupt TIMER_FREQ times per second,
+   and registers the corresponding interrupt. */
 
+/**
+ *      Функция настраивает таймер на прерывание TIMER_FREQ раз в секунду и регистрирует соответсвующее прерывание.
  *      pit_configure_channel(0, 2, TIMER_FREQ) - функция, которая настраивает канал таймера PIT
  * (Programmable Interval Timer) на использование режима 2 и устанавливает частоту таймера на значение TIMER_FREQ.
  * Режим 2 используется для установки таймера в периодический режим с использованием автоматической перезагрузки
