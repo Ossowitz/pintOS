@@ -42,7 +42,9 @@ static void real_time_delay (int64_t num, int32_t denom);
  * прерывания 0x20 (32 в десятичной). Когда таймер достигает заданного значения, происходит прерывание, и исполняется
  * обработчик прерывания timer_interrupt. Строка "8254 Timer" используется в качестве имени прерывания для отладочных целей.
  */
-void timer_init (void) {
+void
+timer_init (void)
+{
   pit_configure_channel (0, 2, TIMER_FREQ);
   intr_register_ext (0x20, timer_interrupt, "8254 Timer");
 }
